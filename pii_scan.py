@@ -2,6 +2,7 @@
 
 
 def show_aggie_pride():
+    """Show Aggie Pride"""
     return "Aggie Pride - Worldwide"
 
 
