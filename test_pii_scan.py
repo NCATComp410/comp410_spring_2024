@@ -11,10 +11,14 @@ class TestPII(unittest.TestCase):
 
     def test_anonymize_location(self):
         """Test to make sure location is anonymized"""
-        # Test to make sure text is anonymized
+
+        # The first positive test case expects the Presido library to anonymize the location
+        # with "New York" replaced with "<LOCATION>"
         self.assertEqual('I live in <LOCATION>',
                          anonymize_text('I live in New York', ['LOCATION']))
-        # Test to make sure text is not anonymized
+
+        # This negative test case expects the Presido library to not anonymize the location
+        # so anonymize_text should return the original text without any replacements
         self.assertEqual('I live in a house',
                          anonymize_text('I live in a house', ['LOCATION']))
 

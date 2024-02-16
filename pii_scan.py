@@ -4,6 +4,8 @@ from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
 
 # make sure en_core_web_lg is loaded correctly
+# this can also be achieved with
+# python -m spacy download en_core_web_lg
 try:
     nlp = spacy.load("en_core_web_lg")
 except OSError:
