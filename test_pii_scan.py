@@ -1,13 +1,26 @@
-"""Tests for pii_scan.py"""
+"""Basic tests for the pii_scan module"""
 import unittest
-from pii_scan import show_aggie_pride
+from pii_scan import show_aggie_pride,  anonymize_text
 
 
 class TestPII(unittest.TestCase):
-    """Tests for pii_scan.py"""
+    """Test the pii_scan module"""
     def test_show_aggie_pride(self):
-        """Test show_aggie_pride"""
+        """Test to make sure Aggie Pride is shown correctly"""
         self.assertEqual(show_aggie_pride(), "Aggie Pride - Worldwide")
+
+    def test_anonymize_location(self):
+        """Test to make sure location is anonymized"""
+
+        # The first positive test case expects the Presido library to anonymize the location
+        # with "New York" replaced with "<LOCATION>"
+        self.assertEqual('I live in <LOCATION>',
+                         anonymize_text('I live in New York', ['LOCATION']))
+
+        # This negative test case expects the Presido library to not anonymize the location
+        # so anonymize_text should return the original text without any replacements
+        self.assertEqual('I live in a house',
+                         anonymize_text('I live in a house', ['LOCATION']))
 
 
 if __name__ == '__main__':
