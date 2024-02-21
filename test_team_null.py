@@ -26,3 +26,10 @@ class TestTeamNull(unittest.TestCase):
         ssn = prefix[0] + '-' + mid[0] + '-' + suffix[0]
         self.assertEqual('SSN 123-00-6789',
                          anonymize_text('SSN ' + ssn, ['US_SSN']))
+        # Test a valid SSN without text
+        prefix = ['123']
+        mid = ['44']
+        suffix = ['6789']
+        ssn = prefix[0] + '-' + mid[0] + '-' + suffix[0]
+        self.assertEqual('<US_SSN>',
+                         anonymize_text(ssn, ['US_SSN']))
