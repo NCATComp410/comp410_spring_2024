@@ -19,7 +19,6 @@ class TestTeamNull(unittest.TestCase):
         ssn = prefix[0] + '-' + mid[0] + '-' + suffix[0]
         self.assertEqual('SSN <US_SSN>',
                          anonymize_text('SSN ' + ssn, ['US_SSN']))
-        
         # test an invalid ssn
         prefix = ['123']
         mid = ['00']
