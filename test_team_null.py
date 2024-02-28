@@ -17,6 +17,7 @@ class TestTeamNull(unittest.TestCase):
         mid = ['44', '55', '66']
         suffix = ['6789', '2233', '3344']
 
+        # generate test cases using list comprehension
         test_cases = [f"My SSN is {p}-{m}-{s}" for p in prefix for m in mid for s in suffix]
 
         for test_string in test_cases:
