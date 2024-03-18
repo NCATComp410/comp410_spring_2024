@@ -22,6 +22,14 @@ class TestPII(unittest.TestCase):
         self.assertEqual('I live in a house',
                          anonymize_text('I live in a house', ['LOCATION']))
 
+    def test_language_specific(self):
+        """Test to make sure languange specific entities are loaded correctly"""
+        entities = ('ES_NIF, IT_DRIVER_LICENSE, IT_VAT_CODE, IT_FISCAL_CODE, IT_IDENTITY_CARD, '
+                    'IT_PASSPORT, PL_PESEL, SG_NRIC_FIN')
+        for e in entities.split(', '):
+            # make sure an exception is not raised
+            anonymize_text('my name is John Doe', [e])
+
 
 if __name__ == '__main__':
     unittest.main()
