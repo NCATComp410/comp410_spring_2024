@@ -13,8 +13,8 @@ class TestTeamFutureAssured(unittest.TestCase):
     def test_iban_code(self):
         """Test iban_code functionality"""
         #Positive Test Case
-                   
-        instance = ['GB33BUKB20201555555555', 'MT31MALT01100000000000000000123', 'DO22ACAU00000000000123456789']
+        instance = ['GB33BUKB20201555555555', 'MT31MALT01100000000000000000123',
+                    'DO22ACAU00000000000123456789']
         for p in instance:
             test_string = 'My IBAN code is ' + p
             excpected = "My IBAN code is <IBAN_CODE>"
