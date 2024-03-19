@@ -12,6 +12,21 @@ class TestTeamFutureAssured(unittest.TestCase):
 
     def test_iban_code(self):
         """Test iban_code functionality"""
+        #Positive Test Case
+                   
+        instance = ['GB33BUKB20201555555555', 'MT31MALT01100000000000000000123', 'DO22ACAU00000000000123456789']
+        for p in instance:
+            test_string = 'My IBAN code is ' + p
+            excpected = "My IBAN code is <IBAN_CODE>"
+            actual = anonymize_text(test_string, ['IBAN_CODE'])
+            self.assertEqual(excpected, actual)
+
+        #Negative Test Case - will not be replaced
+        test_string = "My IBAN code is GB14WXYZ220562325648978"
+        excpected = "My IBAN code is GB14WXYZ220562325648978"
+        actual = anonymize_text(test_string, ['IBAN_CODE'])
+        self.assertEqual(excpected, actual)
+
 
     def test_phone_number(self):
         """Test phone_number functionality"""
