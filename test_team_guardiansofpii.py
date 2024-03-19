@@ -15,12 +15,10 @@ class TestTeamGuardiansOfPII(unittest.TestCase):
 
     def test_person(self):
         """Test person functionality"""
-        # Positive Testcases
-        test_string = "The PERSON is Harper Jasmine Margarita Johnson"
+        # Positive Testcase
+        test_string = "The PERSON is Jasmine Johnson"
         actual = anonymize_text(test_string, ['PERSON'])
         expected = "The PERSON is <PERSON>"
-        # Replace the person with <PERSON> to apply custom logic
-        actual = actual.replace('Harper Jasmine Margarita Johnson', '<PERSON>')
         self.assertEqual(expected, actual)
 
         # Negative Testcase - should not replace other testcases
