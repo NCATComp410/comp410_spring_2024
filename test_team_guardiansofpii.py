@@ -15,6 +15,25 @@ class TestTeamGuardiansOfPII(unittest.TestCase):
 
     def test_person(self):
         """Test person functionality"""
+        # Positive Testcases
+        test_string = "The PERSON is Harper Jasmine Margarita Johnson"
+        actual = anonymize_text(test_string, ['PERSON'])
+        expected = "The PERSON is <PERSON>"
+        # Replace the person with <PERSON> to apply custom logic
+        actual = actual.replace('Harper Jasmine Margarita Johnson', '<PERSON>')
+        self.assertEqual(expected, actual)
+
+        # Negative Testcase - should not replace other testcases
+        test_string = "The PERSON is modern family"
+        expected = "The PERSON is modern family"
+        actual = anonymize_text(test_string, ['PERSON'])
+        self.assertEqual(expected, actual)
+
+        # Negative Testcase - should not replace other testcases
+        test_string = "The PERSON is here! puppy"
+        expected = "The PERSON is here! puppy"
+        actual = anonymize_text(test_string, ['PERSON'])
+        self.assertEqual(expected, actual)
 
     def test_us_driver_license(self):
         """Test us_driver_license functionality"""
