@@ -34,7 +34,7 @@ class TestTeam1(unittest.TestCase):
         expected = 'My piva is <IT_VAT_CODE>'
         actual = anonymize_text(test_string, ["IT_VAT_CODE"])
         self.assertEqual(expected,actual)
-        #negative test case 
+        #negative test case
         test_string = 'My piva is 78674434594'
         expected = 'My piva is 78674434594'
         actual = anonymize_text(test_string,['IT_VAT_CODE'])
