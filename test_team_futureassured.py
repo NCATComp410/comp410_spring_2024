@@ -21,7 +21,7 @@ class TestTeamFutureAssured(unittest.TestCase):
         # positive test case
         start = ['912', '958', '999']
         middle = ['51', '85', '91']
-        end = ['1234', '5484', 6543]
+        end = ['1234', '5484', '6543']
 
         test_cases = [f"My ITIN is {s}-{m}-{e}" for s in start for m in middle for e in end]
 
