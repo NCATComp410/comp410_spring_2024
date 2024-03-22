@@ -42,3 +42,19 @@ class TestTeamFutureAssured(unittest.TestCase):
 
     def test_au_medicare(self):
         """Test au_medicare functionality"""
+        #format
+        #First digit and must be in the range 2–6
+        #8th digit is check sum
+        #Last digit (issue number) and can't be 0
+        #positive test case example
+        test_string  = 'My AU Medicare Number is 2835467857'
+        expected = 'My AU Medicare Number is <AU_MEDICARE>'
+        actual = anonymize_text(test_string, ['AU_MEDICARE'])
+        self.assertEqual(expected, actual)
+
+        #negative test case example
+        #check sum digit is not calculated correctly in this example
+        test_string  = 'My AU Medicare Number is 2835467897'
+        expected = 'My AU Medicare Number is 2835467897'
+        actual = anonymize_text(test_string, ['AU_MEDICARE'])
+        self.assertEqual(expected, actual)
