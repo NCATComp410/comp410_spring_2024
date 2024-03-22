@@ -15,12 +15,42 @@ class TestTeam1(unittest.TestCase):
 
     def test_ip_address(self):
         """Test ip_address functionality"""
+        #Positive Testcase
+        prefix = ['192', '143', '101']
+        mid1 = ['168', '88', '72']
+        mid2 = ['23', '54', '200']
+        suffix = ['98', '1', '196']
+        for p in prefix:
+            for m1 in mid1:
+                for m2 in mid2:
+                    for s in suffix:
+                        test_string = 'My IP Address is ' + p + '.' + m1 + '.' + m2 + '.' + s
+                        expected = "My IP Address is <IP_ADDRESS>"
+        actual = anonymize_text(test_string, ["IP_ADDRESS"])
+        self.assertEqual(expected, actual)
+
+        #Negative Testcase
+        test_string = "My IP Address is 192.168.256.45"
+        expected = "My IP Address is 192.168.256.45"
+        actual = anonymize_text(test_string, ["IP_ADDRESS"])
+        self.assertEqual(expected, actual)
 
     def test_medical_license(self):
         """Test medical_license functionality"""
 
     def test_us_passport(self):
         """Test us_passport functionality"""
+        #positive testcase
+        test_string = "My US Passport ID is 123456789"
+        expected = "My US Passport ID is <US_PASSPORT>"
+        actual = anonymize_text(test_string, ["US_PASSPORT"])
+        self.assertEqual(expected,actual)
+
+        #negative testcase
+        test_string = "My US Passport ID is 1234334345678"
+        expected = "My US Passport ID is <US_PASSPORT>"
+        actual = anonymize_text(test_string, ["US_PASSPORT"])
+        self.assertNotEqual(expected,actual)
 
     def test_it_vat_code(self):
         """Test it_vat_code functionality"""
