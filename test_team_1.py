@@ -54,3 +54,19 @@ class TestTeam1(unittest.TestCase):
 
     def test_it_vat_code(self):
         """Test it_vat_code functionality"""
+
+        #positive test case
+        prefix =['26273', '01333']
+        suffix =['364211','550323']
+        for i in prefix:
+            for j in suffix:
+                test_string = 'My piva is ' +i +j
+        expected = 'My piva is <IT_VAT_CODE>'
+        actual = anonymize_text(test_string, ["IT_VAT_CODE"])
+        self.assertEqual(expected,actual)
+        #negative test case
+        test_string = 'My piva is 78674434594'
+        expected = 'My piva is 78674434594'
+        actual = anonymize_text(test_string,['IT_VAT_CODE'])
+        self.assertEqual(expected,actual)
+        
