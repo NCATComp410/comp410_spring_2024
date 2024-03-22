@@ -11,20 +11,19 @@ class TestTeam1(unittest.TestCase):
                          anonymize_text('I live in New York', ['LOCATION']))
 
     def test_credit_card(self):
-        """Test credit_card functionality"""
-        
+        """Test credit_card functionality"""     
         # positive test case
         prefix = ['4111', '5105', '6011']
         middle1 = ['1111', '1051', '0000']
         middle2 = ['1111', '0510', '0000']
         suffix = ['1111', '5100', '0004']
-        
+
         for p in prefix:
             for m1 in middle1:
                 for m2 in middle2:
                     for s in suffix:
 
-                        test_string = 'My credit card is ' + p + '-' + m1 + '-' + m2 + '-' + s 
+                        test_string = 'My credit card is ' + p + '-' + m1 + '-' + m2 + '-' + s
                         expected = 'My credit card is <CREDIT_CARD>'
         actual = anonymize_text(test_string, ['CREDIT_CARD'])
         self.assertEqual(expected, actual)
