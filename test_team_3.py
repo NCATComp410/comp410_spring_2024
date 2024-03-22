@@ -34,7 +34,7 @@ class TestTeam3(unittest.TestCase):
 
         # negative testcase - will not be replaced
         test_string = 'My birthday is 00-00-0' # yy-mm-dd is not a date recognizing pattern
-        expected = 'My birthday is 00-00-0' 
+        expected = 'My birthday is 00-00-0'
         actual = anonymize_text(test_string, ['DATE_TIME'])
         self.assertEqual(expected, actual)
 
