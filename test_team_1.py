@@ -44,6 +44,17 @@ class TestTeam1(unittest.TestCase):
 
     def test_us_passport(self):
         """Test us_passport functionality"""
+        #positive testcase
+        test_string = "My US Passport ID is 123456789"
+        expected = "My US Passport ID is <US_PASSPORT>"
+        actual = anonymize_text(test_string, ["US_PASSPORT"])
+        self.assertEqual(expected,actual)
+
+        #negative testcase
+        test_string = "My US Passport ID is 1234334345678"
+        expected = "My US Passport ID is <US_PASSPORT>"
+        actual = anonymize_text(test_string, ["US_PASSPORT"])
+        self.assertNotEqual(expected,actual)
 
     def test_it_vat_code(self):
         """Test it_vat_code functionality"""
