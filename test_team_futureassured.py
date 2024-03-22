@@ -35,7 +35,17 @@ class TestTeamFutureAssured(unittest.TestCase):
 
     def test_it_driver_license(self):
         """Test it_driver_license functionality"""
+        # Positive test case
+        test_string = 'My driver license code is RR4912349J'
+        expected = 'My driver license code is <IT_DRIVER_LICENSE>'
+        actual = anonymize_text(test_string, ['IT_DRIVER_LICENSE'])
+        self.assertEqual(expected, actual)
 
+        # Negative Test Case - will not be replaced
+        test_string = 'My driver license code is R1053121X'
+        expected = 'My driver license code is R1053121X'
+        actual = anonymize_text(test_string, ['IT_DRIVER_LICENSE'])
+        self.assertEqual(expected, actual)
     def test_au_abn(self):
         
         #positive testcase
