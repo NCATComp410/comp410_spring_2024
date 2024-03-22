@@ -1,19 +1,20 @@
 """Unit test file for Team Team2"""
 import unittest
 import re
-from pii_scan import anonymize_text
 from urllib.parse import urlparse, parse_qs
+from pii_scan import anonymize_text
 
-def url(URL):
-    privateInfo = r'password|passwd|pwd|secret|secret|token|api_key'
+def check_url(url):
+    """Method for the URL"""
+    #Creating function to determine if pii is in URL
+    private_info = r'password|passwd|pwd|secret|secret|token|api_key'
 
-    qureyUrl = urlparse(URL)
-    urlParameters = parse_qs(qureyUrl.query)
+    qurey_url = urlparse(url)
+    url_parameters = parse_qs(qurey_url.query)
 
-    for i in urlParameters:
-        if any(re.search(privateInfo, value, re.IGNORECASE) for value in urlParameters[i]):
+    for _, values in url_parameters.items():
+        if any(re.search(private_info, value, re.IGNORECASE) for value in values):
             return True
-        
     return False
 
 
@@ -32,16 +33,17 @@ class TestTeam2(unittest.TestCase):
         """Test nrp functionality"""
 
     def test_url(self):
+        """Testing URL"""
         #Positive test case, has PII in URL
-        testURL = "http://www.test.com/pageName?user=RealName&Password=TheRealPassword123"
+        test_url = "http://www.test.com/pageName?user=RealName&Password=TheRealPassword123"
         expected = True
-        actual = url(testURL)
+        actual = check_url(test_url)
         self.assertEqual(expected, actual)
 
         #Negative test case, doesn't have PII in URL
-        negativeTestURL = "http://www.testExample.com/page?param1=val1&param2=val2"
+        negative_url = "http://www.testExample.com/page?param1=val1&param2=val2"
         expected = True
-        actual = url(negativeTestURL)
+        actual = check_url(negative_url)
         self.assertNotEqual(expected, actual)
 
 
