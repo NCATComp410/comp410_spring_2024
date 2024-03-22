@@ -24,3 +24,26 @@ class TestTeam3(unittest.TestCase):
 
     def test_it_identity_card(self):
         """Test it_identity_card functionality"""
+        # positive test cases
+        prefixes = ['AB', 'CD', 'EF']
+        digits = ['1234567', '7654321', '9876543']
+
+        test_cases = [f"My ID is {prefix} {digit}" for prefix in prefixes for digit in digits]
+
+        for test_string in test_cases:
+            expected = 'My ID is <IT_IDENTITY_CARD>'
+            actual = anonymize_text(test_string, ['IT_IDENTITY_CARD'])
+            self.assertEqual(expected, actual)
+
+        # negative test case - this will not be replaced
+        test_string = 'My ID is ABC123456789' #Incorrect format
+        expected = test_string
+        actual = anonymize_text(test_string, ['IT_IDENTITY_CARD'])
+        self.assertEqual(expected, actual)
+
+        # another negative test case - this will not be replaced
+        test_string = 'This is not an identity card number'
+        expected = test_string
+        actual = anonymize_text(test_string, ['IT_IDENTITY_CARD'])
+        self.assertEqual(expected, actual)
+        
