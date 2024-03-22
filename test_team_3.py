@@ -15,12 +15,12 @@ class TestTeam3(unittest.TestCase):
         #positive testcase
         month_prefix = ['12', '6', '7', '10']
         day_mid = ['9','20','23','12']
-        year_suffix = ['2000', '1984', '2003', '1962']
+        year_suffix = ['2000', '1983', '2003', '1962']
 
         for month in month_prefix:
             for day in day_mid:
                 for year in year_suffix:
-                    test_string = (f'My birthday is {month}/{day}/{year}')
+                    test_string = f'My birthday is {month}/{day}/{year}'
                     expected = 'My birthday is <DATE_TIME>'
                     actual = anonymize_text(test_string, ['DATE_TIME'])
                     self.assertEqual(expected, actual)
@@ -34,7 +34,7 @@ class TestTeam3(unittest.TestCase):
 
         # negative testcase - will not be replaced
         test_string = 'My birthday is 00-00-0' # yy-mm-dd is not a date recognizing pattern
-        expected = 'My birthday is 00-00-0'
+        expected = 'My birthday is 00-00-0' 
         actual = anonymize_text(test_string, ['DATE_TIME'])
         self.assertEqual(expected, actual)
 
