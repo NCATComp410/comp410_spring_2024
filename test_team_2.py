@@ -15,6 +15,29 @@ class TestTeam2(unittest.TestCase):
 
     def test_nrp(self):
         """Test nrp functionality"""
+        # positive testcase
+        nationality = ['American', 'Canadian', 'Russian']
+        religion = ['Christianity', 'Islam', 'Hinduism']
+        political_group = ['Liberal', 'Conservative', 'Socialist Parties']
+        for n in nationality:
+            for r in religion:
+                for p in political_group:
+                    test_string = "My NRP is " + n + "," + r + ", and" + p
+                    expected = "My NRP is <NRP>"
+                    actual = anonymize_text(test_string, ["NRP"])
+                    self.assertEqual(expected, actual)
+
+        # negative testcase - this will not be replaced
+        test_string = "My nationality is American"
+        expected = "My NRP is <NRP>"
+        actual = anonymize_text(test_string, ["NRP"])
+        self.assertEqual(expected, actual)
+
+        # another negative testcase
+        test_string = "My nationality is Russian"
+        expected = "My NRP is <NRP>"
+        actual = anonymize_text(test_string, ["NRP"])
+        self.assertEqual(expected, actual)
 
     def test_url(self):
         """Test url functionality"""
