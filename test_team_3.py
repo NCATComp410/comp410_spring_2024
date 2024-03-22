@@ -51,7 +51,7 @@ class TestTeam3(unittest.TestCase):
         actual = anonymize_text(test_string, ['LOCATION'])
         self.assertEqual(expected, actual)
 
-        #negative testcase 
+        #negative testcase
         test_string = 'I do not live in the house'
         expected = 'I do not live in the house'
         actual = anonymize_text(test_string, ['LOCATION'])
