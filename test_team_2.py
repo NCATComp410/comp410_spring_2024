@@ -1,21 +1,7 @@
 """Unit test file for Team Team2"""
 import unittest
-import re
-from urllib.parse import urlparse, parse_qs
 from pii_scan import anonymize_text
-
-def check_url(url):
-    """Method for the URL"""
-    #Creating function to determine if pii is in URL
-    private_info = r'password|passwd|pwd|secret|secret|token|api_key'
-
-    qurey_url = urlparse(url)
-    url_parameters = parse_qs(qurey_url.query)
-
-    for _, values in url_parameters.items():
-        if any(re.search(private_info, value, re.IGNORECASE) for value in values):
-            return True
-    return False
+from pii_scan import check_url
 
 
 
@@ -45,6 +31,14 @@ class TestTeam2(unittest.TestCase):
         expected = True
         actual = check_url(negative_url)
         self.assertNotEqual(expected, actual)
+
+        #Test Case to make sure only parameters are included
+        parameter_test_url = "http://www.secret.com"
+        expected = False
+        actual= check_url (parameter_test_url)
+        self.assertEqual(expected, actual)
+
+
 
 
     def test_uk_nhs(self):
