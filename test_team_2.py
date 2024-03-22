@@ -13,6 +13,21 @@ class TestTeam2(unittest.TestCase):
     def test_crypto(self):
         """Test crypto functionality"""
 
+        #positive test case, should replace the address with <CRPYTO>
+        
+        prefix = ['3', '1']
+        end = ['QJmV3qfvL9SuYo34YihAf3sRCW3qSinyC', 'C7zdTfnkzmr13HfA2vNm5SJYRK6nEKyq8']
+        #use for loop to create addresses that won't flag detection systems
+        for num in range(len(prefix)):
+                expected = 'My bitcoin wallet address is <CRYPTO>'
+                actual = 'My bitcoin wallet address is ' + prefix[num] + end[num]
+                self.assertEqual(anonymize_text(actual, ['CRYPTO']), expected)
+
+        #negative test case 1: Will not be replaced due to invalid format
+        invalid = 'My bitcoin wallet address is 24qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq'
+        self.assertEqual(anonymize_text(invalid, ['CRYPTO']), invalid)
+
+
     def test_nrp(self):
         """Test nrp functionality"""
 
