@@ -1,6 +1,8 @@
 """Unit test file for Team Team2"""
 import unittest
 from pii_scan import anonymize_text
+from pii_scan import check_url
+
 
 
 class TestTeam2(unittest.TestCase):
@@ -17,7 +19,27 @@ class TestTeam2(unittest.TestCase):
         """Test nrp functionality"""
 
     def test_url(self):
-        """Test url functionality"""
+        """Testing URL"""
+        #Positive test case, has PII in URL
+        test_url = "http://www.test.com/pageName?user=RealName&Password=TheRealPassword123"
+        expected = True
+        actual = check_url(test_url)
+        self.assertEqual(expected, actual)
+
+        #Negative test case, doesn't have PII in URL
+        negative_url = "http://www.testExample.com/page?param1=val1&param2=val2"
+        expected = True
+        actual = check_url(negative_url)
+        self.assertNotEqual(expected, actual)
+
+        #Test Case to make sure only parameters are included
+        parameter_test_url = "http://www.secret.com"
+        expected = False
+        actual= check_url (parameter_test_url)
+        self.assertEqual(expected, actual)
+
+
+
 
     def test_uk_nhs(self):
         """Test uk_nhs functionality"""
