@@ -46,3 +46,21 @@ class TestTeam2(unittest.TestCase):
 
     def test_it_passport(self):
         """Test it_passport functionality"""
+        # Positive test cas
+        prefix = ['CC', 'XX']
+        sufix = ['0000000', '1111111']
+        for p in prefix:
+            for s in sufix:
+                test_string = 'My passaportoy is ' + p + s
+                expected = "My passaportoy is <IT_PASSPORT>"
+                actual = anonymize_text(test_string, ['IT_PASSPORT'])
+                self.assertEqual(expected, actual)
+    # Negative test case
+                #tooLong
+        expected = 'My passaportoy is CC00000001'
+        actual = anonymize_text('My passaportoy is CC00000001', ['IT_PASSPORT'])
+        self.assertEqual(expected, actual)
+        #tooShort
+        expected = 'My passaportoy is CC000000'
+        actual = anonymize_text('My passaportoy is CC000000', ['IT_PASSPORT'])
+        self.assertEqual(expected, actual)
