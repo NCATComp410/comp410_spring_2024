@@ -1,4 +1,6 @@
 """PII Scan"""
+from urllib.parse import urlparse, parse_qs
+import re
 import spacy
 from presidio_analyzer import AnalyzerEngine, RecognizerRegistry
 from presidio_analyzer.predefined_recognizers import (ItDriverLicenseRecognizer,
@@ -35,6 +37,7 @@ analyzer = AnalyzerEngine(registry=registry)
 anonymizer = AnonymizerEngine()
 
 
+
 def show_aggie_pride():
     """Show Aggie Pride"""
     return "Aggie Pride - Worldwide"
@@ -61,3 +64,17 @@ def anonymize_text(text: str, entity_list: list) -> str:
 if __name__ == '__main__':
     print(show_aggie_pride())
     print(anonymize_text('my name is John Doe', ['PERSON']))
+
+
+def check_url(url):
+    """Method for the URL"""
+    #Creating function to determine if pii is in URL
+    private_info = r'password|passwd|pwd|secret|token|api_key'
+
+    qurey_url = urlparse(url)
+    url_parameters = parse_qs(qurey_url.query)
+
+    for _, values in url_parameters.items():
+        if any(re.search(private_info, value, re.IGNORECASE) for value in values):
+            return True
+    return False
