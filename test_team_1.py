@@ -59,6 +59,17 @@ class TestTeam1(unittest.TestCase):
 
     def test_medical_license(self):
         """Test medical_license functionality"""
+        # Positive Testcase: Valid DEA number
+        test_string = "My DEA number is H93456781"
+        expected = "My DEA number is <MEDICAL_LICENSE>"
+        actual = anonymize_text(test_string, ["MEDICAL_LICENSE"])
+        self.assertEqual(expected, actual)
+
+        # Negative Testcase: Invalid DEA number
+        test_string = "My DEA number is H93456881"
+        expected = "My DEA number is H93456881"
+        actual = anonymize_text(test_string, ["MEDICAL_LICENSE"])
+        self.assertEqual(expected, actual)
 
     def test_us_passport(self):
         """Test us_passport functionality"""
