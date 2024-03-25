@@ -40,6 +40,47 @@ class TestTeam3(unittest.TestCase):
 
     def test_location(self):
         """Test location functionality"""
+        # positive testcase
+        test_string = "I am from 123 Blueberry Ave"
+        expected = "I am from <LOCATION>"
+        actual = anonymize_text(expected, ['LOCATION'])
+        self.assertEqual(expected, actual)
+
+        #positive testcase
+        test_string = "I am from New York"
+        expected = "I am from <LOCATION>"
+        actual = anonymize_text(expected, ['LOCATION'])
+        self.assertEqual(expected, actual)
+
+        #positive testcase
+        test_string = "I am from Montana"
+        expected = "I am from <LOCATION>"
+        actual = anonymize_text(expected, ['LOCATION'])
+        self.assertEqual(expected, actual)
+
+        #positive testcase
+        test_string = "I am from Indiana"
+        expected = "I am from <LOCATION>"
+        actual = anonymize_text(expected, ['LOCATION'])
+        self.assertEqual(expected, actual)
+
+        #positive testcase
+        test_string = "I am from 324 Maple Lane"
+        expected = "I am from <LOCATION>"
+        actual = anonymize_text(expected, ['LOCATION'])
+        self.assertEqual(expected, actual)
+
+        #negative testcase
+        test_string = 'I live in the house'
+        expected = 'I live in the house'
+        actual = anonymize_text(test_string, ['LOCATION'])
+        self.assertEqual(expected, actual)
+
+        #negative testcase
+        test_string = 'I do not live in the house'
+        expected = 'I do not live in the house'
+        actual = anonymize_text(test_string, ['LOCATION'])
+        self.assertEqual(expected, actual)
 
     def test_us_bank_number(self):
         """Test US bank number detection and anonymization"""
