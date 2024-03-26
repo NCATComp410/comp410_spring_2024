@@ -60,9 +60,9 @@ class TestTeamFutureAssured(unittest.TestCase):
         expected = 'My driver license code is R1053121X'
         actual = anonymize_text(test_string, ['IT_DRIVER_LICENSE'])
         self.assertEqual(expected, actual)
-        
+
     def test_au_abn(self):
-        
+        """Test case for AU_ABN"""     
         #positive testcase
         test_string = "My ABN is 51824753556"
         expected = "My ABN is <AU_ABN>"
