@@ -23,7 +23,7 @@ class TestPII(unittest.TestCase):
                          anonymize_text('I live in a house', ['LOCATION']))
 
     def test_language_specific(self):
-        """Test to make sure languange specific entities are loaded correctly"""
+        """Test to make sure language specific entities are loaded correctly"""
         entities = ('ES_NIF, IT_DRIVER_LICENSE, IT_VAT_CODE, IT_FISCAL_CODE, IT_IDENTITY_CARD, '
                     'IT_PASSPORT, PL_PESEL, SG_NRIC_FIN')
         for e in entities.split(', '):
