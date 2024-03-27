@@ -113,6 +113,15 @@ class TestTeam3(unittest.TestCase):
 
     def test_es_nif(self):
         """Test es_nif functionality"""
+        #Negative Testcase Should not replace id
+        test_string = "documento nacional de identidad B112345267A8A"
+        expected = "documento nacional de identidad B112345267A8A"
+        self.assertEqual(expected, anonymize_text(test_string, ['ES_NIF']))
+        # positive testcase should replace id, does not however
+        test_string = 'documento nacional de identidad 123452675A'
+        expected = 'documento nacional de identidad <ES_NIF>'
+        actual = anonymize_text(test_string, ['ES_NIF'])
+        self.assertEqual(expected, actual)
 
     def test_it_identity_card(self):
         """Test it_identity_card functionality"""
