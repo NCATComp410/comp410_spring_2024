@@ -18,13 +18,13 @@ class TestTeam2(unittest.TestCase):
         # positive testcase
         nationality = ['American', 'Canadian', 'Russian']
         religion = ['Christianity', 'Islam', 'Hinduism']
-        political_group = ['Liberal', 'Conservative', 'Socialist Parties']
+        political_group = ['Liberal', 'Conservative', 'Socialist']
         for n in nationality:
             for r in religion:
                 for p in political_group:
-                    test_string = "My NRP is " + n + "," + r + ", and" + p
-                    expected = "My NRP is <NRP>"
-                    actual = anonymize_text(test_string, ["NRP"])
+                    test_string = "My NRP is " + n + ", " + r + ", and " + p
+                    expected = 'My NRP is <NRP>, <NRP>, and <NRP>'
+                    actual = anonymize_text(test_string, ['NRP'])
                     self.assertEqual(expected, actual)
 
         # negative testcase - this will not be replaced
