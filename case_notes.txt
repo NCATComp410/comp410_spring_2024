@@ -1,0 +1,26 @@
+Customer first provided an invalid AU ABN 5282475355632 and then the correct one 51 824 753 556
+The customer provided 2 AU ACN numbers.  The first number, 52824753556AF, is invalid.  The second number, 006249976, was correct
+Worked with the customer to correct a billing issue.  The form listed an invalid number 2123456702AF for their AU Medicate number.  The correct number is 2123456701.
+The AU TFN database was incorrect and was updated from 52824753556AF to 876543210
+Customer contacted the billing department to update their CC from 122000000000003 to 5019717010103742
+The customer's crypto wallet was incorrect - 16Yeky6GMjeNkAiNcBY7ZhrLoMSgg1BoyZ2 - this was updated to 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy
+The coverage date was changed from 05-21 to the correct 2021-05-21
+The email address was missing from the account.  It should have been info@presidio.site
+During the call it was found the ES NIF was set incorrectly.  Updated from 5555555K to 12345678Z
+The IBAN code was incorrect.  The correct code is QA58DOHB00001234567890ABCDEFG
+The customer's IPv4  address was incorrect.  It was updated to 192.168.84.3
+The insurance database had the wrong Italian driver's license number.  It was updated to AA0123456C
+The IT fiscal code for billing was not correct.  It was updated to AAAAAA00B11C333Y
+There was an error in the IT identify card. The new number AA12345aa was added to the correct entry
+The passport number on the plane ticket was incorrect because it was an IT passport. The correct number is aa7654321
+Taxes were not collected properly because the IT VAT was not correct.  Please use 01333550323
+The customer got a new phone number.  The old number was (919) 555-1212 and the new number is (415) 555-1212
+The customer from Singapore was unable to check in to the hotel due to an incorrect FIN on file.  Corrected to G1122144L
+Insurance was not approved due to incorrect UK NHS number.  The correct number is 0032698674
+The customer used the wrong login credentials - please use https://www.test.com/pageName?user=RealName&Password=TheRealPassword123
+Banking information changed for the automatic payment.  Corrected account to 945456787654
+The VIN came back invalid.  We were able to search by US driver's licence H12234567 and find the vehicle information.
+The ITIN number was corrected to 911-53-1234
+The travel document A12803456 was really a US passport number and not an IT number
+The customer is now married.  Name was update to Jerri Jones Smith
+The individual moved from New York to New Jersey.  The state abbreviation was updated from NY to NJ
