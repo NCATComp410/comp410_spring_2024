@@ -47,6 +47,23 @@ class TestTeamFutureAssured(unittest.TestCase):
 
     def test_us_itin(self):
         """Test us_itin functionality"""
+        # positive test case
+        start = ['912', '958', '999']
+        middle = ['51', '85', '91']
+        end = ['1234', '5484', '6543']
+
+        test_cases = [f"My ITIN is {s}-{m}-{e}" for s in start for m in middle for e in end]
+
+        for test_string in test_cases:
+            expected = "My ITIN is <US_ITIN>"
+            actual = anonymize_text(test_string, ['US_ITIN'])
+            self.assertEqual(expected, actual)
+
+        # negative test case - will not be replaced
+        test_string = "My ITIN is 912-42-1234"
+        expected = "My ITIN is 912-42-1234"
+        actual = anonymize_text(test_string, ['US_ITIN'])
+        self.assertEqual(expected, actual)
 
     def test_it_driver_license(self):
         """Test it_driver_license functionality"""
