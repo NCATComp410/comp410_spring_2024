@@ -12,45 +12,31 @@ class TestTeamGuardiansOfPII(unittest.TestCase):
 
     def test_email_address(self):
         """Test email_address functionality"""
-        # Regular expression for matching email addresses
-        email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-
-        # Test cases (both positive and negative) 
-        test_cases = {
-        # Positive test cases (valid email addresses)
-        "valid": [
-            "john.doe@example.com",
-            "alice.smith123@gmail.com",
-            "support@company.co.uk",
-            "first.last@subdomain.domain.info"
-        ],
-        # Negative test cases 
-        "invalid": [
-            "not_an_email",
-            "user@domain",
-            "user@.com",
-            "@domain.com",
-            "user@domain.",
-            "user@.co",
-            "user@.c",
-            "user@domain..com"
-          ]
-        }
-
-        # Compile the regex pattern
-            pattern = re.compile(email_pattern)
-        # Iterate through all test cases
-            for case, emails in test_cases.items():
+        pattern = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b')
+        email_address = {
+                "valid": [
+                    "john.doe@example.com",
+                    "alice.smith123@gmail.com",
+                    "support@company.co.uk",
+                    "first.last@subdomain.domain.info"
+                ],
+                "invalid": [
+                    "not_an_email",
+                    "user@domain",
+                    "user@.com",
+                    "@domain.com",
+                    "user@domain.",
+                    "user@.co",
+                    "user@.c",
+                    "user@domain..com"
+                ]
+            }
+        for case, emails in email_address.items():
             for email in emails:
-            # Check if the email matches the pattern
-            if pattern.match(email):
-                assert case == "valid", f"Expected {email} to be a valid email address."
-            else:
-                # For invalid email addresses
-                assert case == "invalid", f"Expected {email} to be an invalid email address."
-                print("All test cases passed!")
+                self.assertEqual(pattern.match(email) is not None, case == "valid",
+                              f"Expected {email} to be {'valid' if case == 'valid' else 'invalid'}")
                 if __name__ == "__main__":
-                test_email_address()
+                    unittest.main()
 
     def test_person(self):
         """Test person functionality"""
