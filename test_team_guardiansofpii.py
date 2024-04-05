@@ -4,7 +4,7 @@ from pii_scan import anonymize_text
 
 
 class TestTeamGuardiansOfPII(unittest.TestCase):
-    """Test the Team TeamGuardiansOfPII PII functions"""
+    """Test the Team TeamGuardiansOfPII PII functions""" 
     def test_anonymize_text(self):
         """Test the anonymize_text function"""
         self.assertEqual('I live in <LOCATION>',
@@ -17,7 +17,7 @@ class TestTeamGuardiansOfPII(unittest.TestCase):
                 "valid": [
                     "john.doe@example.com",
                     "alice.smith123@gmail.com",
-                    "support@company.co.uk",
+                    "support@company.co.uk", 
                     "first.last@subdomain.domain.info"
                 ],
                 "invalid": [
