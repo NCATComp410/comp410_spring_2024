@@ -12,6 +12,40 @@ class TestTeamGuardiansOfPII(unittest.TestCase):
 
     def test_email_address(self):
         """Test email_address functionality"""
+       # Positive Testcases
+       test_string = "My email is test@example.com"
+       actual = anonymize_text(test_string, ['EMAIL'])
+       expected = "My email is <EMAIL_ADDRESS>"
+       self.assertEqual(expected, actual)
+
+       test_string = "Another email is someone_else@example.com"
+       actual = anonymize_text(test_string, ['EMAIL'])
+       expected = "Another email is <EMAIL_ADDRESS>"
+       self.assertEqual(expected, actual)
+
+       # Multiple email addresses in the text
+       test_string = "My email is test@example.com and another is example@test.com"
+       actual = anonymize_text(test_string, ['EMAIL'])
+       expected = "My email is <EMAIL_ADDRESS> and another is <EMAIL_ADDRESS>"
+       self.assertEqual(expected, actual)
+
+       # Mixed with other text
+       test_string = "My email is test@example.com, please contact me"
+       actual = anonymize_text(test_string, ['EMAIL'])
+       expected = "My email is <EMAIL_ADDRESS>, please contact me"
+       self.assertEqual(expected, actual)
+
+       # Negative Testcases - No email address in the text
+       test_string = "There is no email address here"
+       actual = anonymize_text(test_string, ['EMAIL'])
+       expected = "There is no email address here"
+       self.assertEqual(expected, actual)
+
+       # Negative Testcases - Invalid email address format
+       test_string = "This is not an email: example(at)example(dot)com"
+       actual = anonymize_text(test_string, ['EMAIL'])
+       expected = "This is not an email: example(at)example(dot)com"
+       self.assertEqual(expected, actual) 
 
     def test_person(self):
         """Test person functionality"""
