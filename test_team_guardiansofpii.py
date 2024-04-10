@@ -12,6 +12,22 @@ class TestTeamGuardiansOfPII(unittest.TestCase):
 
     def test_email_address(self):
         """Test email_address functionality"""
+        test_string = "My email address is example@example.com"
+        actual = anonymize_text(test_string, ['EMAIL_ADDRESS'])
+        expected = "My email address is <EMAIL_ADDRESS>"
+        self.assertEqual(expected, actual)
+
+        # Negative Testcase - should not replace other text
+        test_string = "This is not an email address"
+        expected = "This is not an email address"
+        actual = anonymize_text(test_string, ['EMAIL_ADDRESS'])
+        self.assertEqual(expected, actual)
+
+        # Negative Testcase - should not replace other text
+        test_string = "Email addresses can have special characters like this: email@example.co.uk"
+        expected = "Email addresses can have special characters like this: <EMAIL_ADDRESS>"
+        actual = anonymize_text(test_string, ['EMAIL_ADDRESS'])
+        self.assertEqual(expected, actual)
 
     def test_person(self):
         """Test person functionality"""
