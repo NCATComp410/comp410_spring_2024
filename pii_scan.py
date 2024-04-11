@@ -37,7 +37,6 @@ analyzer = AnalyzerEngine(registry=registry)
 anonymizer = AnonymizerEngine()
 
 
-
 def show_aggie_pride():
     """Show Aggie Pride"""
     return "Aggie Pride - Worldwide"
@@ -61,9 +60,18 @@ def anonymize_text(text: str, entity_list: list) -> str:
     return anonymized_text.text
 
 
+def anonymize_file(file_path: str):
+    """
+    Anonymize the text using the entity list
+    :param file_path: the path to the file to be anonymized
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f.readlines():
+            print(anonymize_text(line, []))
+
+
 if __name__ == '__main__':
-    print(show_aggie_pride())
-    print(anonymize_text('my name is John Doe', ['PERSON']))
+    anonymize_file('case_notes.txt')
 
 
 def check_url(url):
