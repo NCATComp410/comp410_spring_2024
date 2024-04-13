@@ -51,6 +51,37 @@ class TestTeamGuardiansOfPII(unittest.TestCase):
 
     def test_us_driver_license(self):
         """Test us_driver_license functionality"""
+        # Positive Test Case 1
+        # Numeric sequence:
+        # 9 numbers
+        positive_test_string = "My driver's license number is 456123789"
+        positive_expected_string = "My driver's license number is <US_DRIVER_LICENSE>"
+        positive_actual_string = anonymize_text(positive_test_string, ['US_DRIVER_LICENSE'])
+        self.assertEqual(positive_expected_string, positive_actual_string)
+
+        # Positive Test Case 2
+        # Alphanumeric sequence:
+        # starts with alpha letter and ends with 6 numbers
+        positive_test_string = "My driver's license number is P223446"
+        positive_expected_string = "My driver's license number is <US_DRIVER_LICENSE>"
+        positive_actual_string = anonymize_text(positive_test_string, ['US_DRIVER_LICENSE'])
+        self.assertEqual(positive_expected_string, positive_actual_string)
+
+        # Positive Test Case 3
+        # Alphanumeric sequence:
+        # starts with 2 alpha letters, followed by 6 numbers, ends with one alpha letter
+        positive_test_string = "My driver's license number is CH920912A"
+        positive_expected_string = "My driver's license number is <US_DRIVER_LICENSE>"
+        positive_actual_string = anonymize_text(positive_test_string, ['US_DRIVER_LICENSE'])
+        self.assertEqual(positive_expected_string, positive_actual_string)
+
+        # Negative Test Case 1
+        # Alphanumeric sequence:
+        # is not a valid license number
+        negative_test_string = "My driver's license number is ABC123XYZ"
+        negative_expected_string = "My driver's license number is ABC123XYZ"
+        negative_actual_string = anonymize_text(negative_test_string, ['US_DRIVER_LICENSE'])
+        self.assertEqual(negative_expected_string, negative_actual_string)
 
     def test_it_fiscal_code(self):
         """Test it_fiscal_code functionality"""
