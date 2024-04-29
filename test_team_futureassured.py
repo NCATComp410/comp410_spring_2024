@@ -2,7 +2,6 @@
 import unittest
 from pii_scan import anonymize_text
 
-
 class TestTeamFutureAssured(unittest.TestCase):
     """Test the Team TeamFutureAssured PII functions"""
     def test_anonymize_text(self):
@@ -78,8 +77,23 @@ class TestTeamFutureAssured(unittest.TestCase):
         expected = 'My driver license code is R1053121X'
         actual = anonymize_text(test_string, ['IT_DRIVER_LICENSE'])
         self.assertEqual(expected, actual)
+
     def test_au_abn(self):
-        """Test au_abn functionality"""
+        """Test case for AU_ABN"""     
+        #positive testcase
+        test_string = "My ABN is 51824753556"
+        expected = "My ABN is <AU_ABN>"
+        actual = anonymize_text(test_string, ["AU_ABN"])
+        self.assertEqual(expected,actual)
+
+        #negative testcase
+        test_string = "My ABN is 1234334345678"
+        expected = "My ABN is <AU_ABN>"
+        actual = anonymize_text(test_string, ["AU_ABN"])
+        self.assertNotEqual(expected,actual)
+
+
+
 
     def test_au_medicare(self):
         """Test au_medicare functionality"""
